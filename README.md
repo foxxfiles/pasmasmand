@@ -6,7 +6,7 @@ Sistema de gestion de contrasenas con cifrado AES256 y almacenamiento local segu
 
 - Almacenamiento cifrado con AES256
 - Doble nivel de cifrado
-- Generador de contrasenas conigurable
+- Generador de contrasenas configurable
 - Interfaz grafica intuitiva con tema oscuro
 - Sin persistencia de datos en texto plano
 

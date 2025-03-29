@@ -162,3 +162,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [PyCryptodome](https://pycryptodome.readthedocs.io/) for cryptographic functions
 - [ttkbootstrap](https://ttkbootstrap.readthedocs.io/) for the modern UI theme
 - All contributors who have helped make this project better
+
+## Disclaimer / Aviso Legal
+
+This software is provided "as is", without any express or implied warranties, including, but not limited to, the warranties of merchantability or fitness for a particular purpose. Fernando Aberto Velasquez Aguilera shall not be held liable for any damages or losses arising from the use or inability to use this software. Users assume full responsibility for testing and verifying the software's suitability for their intended purposes prior to deployment in any production environment. Use of this software is entirely at your own risk. For any commercial modifications or implementations, it is strongly recommended to seek independent legal counsel.
+
+El software se distribuye "tal cual", sin garantías expresas o implícitas, incluyendo, entre otras, las garantías de comerciabilidad o idoneidad para un propósito específico. Fernando Aberto Velasquez Aguilera no se hace responsable de los daños o perjuicios derivados del uso o de la imposibilidad de uso del software. El usuario asume la responsabilidad completa de probar y verificar la idoneidad del software para los fines que pretenda, antes de emplearlo en entornos de producción. El uso del software es completamente bajo su propio riesgo. Se recomienda encarecidamente buscar asesoramiento legal independiente para cualquier modificación o implementación comercial.

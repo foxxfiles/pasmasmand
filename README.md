@@ -49,7 +49,136 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+# Instructions to Create PasMan Executable
 
+This document explains how to convert the PasMan (Secure Password Manager) application into a Windows executable using PyInstaller.
+
+## Prerequisites
+
+1. Ensure you have Python 3.6 or higher installed
+2. Install all project dependencies:
+
+```bash
+pip install -r requirements.txt
+pip install pyinstaller
+```
+
+## Steps to Create the Executable
+
+### 1. Environment Preparation
+
+Before creating the executable, verify the application works correctly in development mode:
+
+```bash
+python main.py
+```
+
+### 2. Spec File Configuration
+
+Modify the `main.spec` file to include necessary files in the final executable. Edit `main.spec` to include the `empty_vault` file and other required resources:
+
+```python
+# -*- mode: python ; coding: utf-8 -*-
+
+a = Analysis(
+    ['main.py'],
+    pathex=[],
+    binaries=[],
+    datas=[('empty_vault', '.')],  # Include empty_vault in root
+    hiddenimports=[],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    noarchive=False,
+    optimize=0,
+)
+pyz = PYZ(a.pure)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.datas,
+    [],
+    name='passman',  # Final executable name
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=False,  # False for GUI application without console
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+    icon='src/ui/assets/icon.ico',  # Optional: Add icon if available
+)
+```
+
+> **Note**: If you have an application icon file, ensure you specify the correct path in the `icon` parameter. If no icon is available, you can remove that line.
+
+### 3. Executable Creation
+
+After configuring the spec file, run PyInstaller to create the executable:
+
+```bash
+pyinstaller main.spec
+```
+
+This command will generate the executable in the `dist/` folder.
+
+### 4. Executable Verification
+
+Verify the executable works correctly:
+1. Navigate to the `dist/` folder
+2. Run `passman.exe`
+3. Confirm all application functionalities work properly
+
+### 5. Installer Creation (Optional)
+
+To create a simple installer, you can use tools like NSIS (Nullsoft Scriptable Install System) or Inno Setup.
+
+## Troubleshooting Common Issues
+
+### Problem: Executable can't find vault file
+
+**Solution**: Ensure `empty_vault` is included in the spec file's `datas` parameter and that the `ensure_vault_exists` function in `pyinstaller_utils.py` works correctly.
+
+### Problem: Missing dependencies
+
+**Solution**: If the executable fails due to missing dependencies, explicitly add them in the spec file's `hiddenimports`:
+
+```python
+hiddenimports=['Crypto', 'Crypto.Cipher', 'Crypto.Cipher.AES', 'ttkbootstrap'],
+```
+
+### Problem: Executable size is too large
+
+**Solution**: Reduce executable size by excluding unnecessary modules in the spec file's `excludes` parameter.
+
+## Executable Distribution
+
+To distribute the application:
+1. Create a ZIP file containing the executable and any additional required files:
+
+```bash
+powershell Compress-Archive -Path dist\passman.exe -DestinationPath dist\passman.zip
+```
+
+2. Distribute the ZIP file or installer (if created)
+
+## Additional Notes
+- The created executable is standalone and doesn't require Python installation
+- All dependencies are included in the executable
+- The application will automatically create an empty vault file on first run if none exists
+- Configuration files will be saved in the same directory as the executable
+
+---
+
+Done! You now have a PasMan executable that can be distributed to users without requiring Python or project dependencies installation.
 ## Usage
 
 ### First Time Setup

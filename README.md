@@ -36,8 +36,8 @@ A robust desktop password management system with AES-256 encryption and secure l
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/secure-password-manager.git
-cd secure-password-manager
+git clone https://github.com/foxxfiles/pasmasmand
+cd passmand
 ```
 
 2. Install the required dependencies:

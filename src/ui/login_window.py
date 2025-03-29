@@ -139,7 +139,17 @@ class LoginWindow:
         # DEBUG: Comprobar si existe el almacén
         print(f"DEBUG: Vault exists: {vault_exists}, Path: {vault.vault_path}")
         
+        # Si estamos en un ejecutable compilado y no existe el almacén, sugerir crear uno nuevo
         if not vault_exists and not create_new:
+            # Verificar si el directorio del vault es escribible
+            vault_dir = os.path.dirname(vault.vault_path)
+            if not os.path.exists(vault_dir):
+                try:
+                    os.makedirs(vault_dir, exist_ok=True)
+                    print(f"DEBUG: Creado directorio para vault: {vault_dir}")
+                except Exception as e:
+                    print(f"DEBUG: Error al crear directorio: {str(e)}")
+            
             response = messagebox.askyesno(
                 "Almacén no encontrado",
                 "No se encontró un almacén de contraseñas. ¿Desea crear uno nuevo?"

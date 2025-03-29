@@ -152,8 +152,20 @@ class PasswordVault:
             
             print(f"DEBUG: Datos cifrados con clave maestra, longitud: {len(encrypted_data)}")
             
+            # Obtener el directorio del vault
+            vault_dir = os.path.dirname(os.path.abspath(self.vault_path))
+            
             # Asegurar que el directorio existe
-            os.makedirs(os.path.dirname(os.path.abspath(self.vault_path)), exist_ok=True)
+            try:
+                os.makedirs(vault_dir, exist_ok=True)
+                print(f"DEBUG: Directorio asegurado: {vault_dir}")
+            except Exception as dir_error:
+                print(f"DEBUG: Error al crear directorio {vault_dir}: {str(dir_error)}")
+                # Si no podemos crear el directorio, intentar usar el directorio actual
+                if not os.path.isabs(self.vault_path):
+                    alt_path = os.path.basename(self.vault_path)
+                    print(f"DEBUG: Intentando usar ruta alternativa: {alt_path}")
+                    self.vault_path = alt_path
             
             # Guardar en archivo
             with open(self.vault_path, 'wb') as f:

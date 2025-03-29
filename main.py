@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from src.ui.login_window import LoginWindow
 from src.utils.config import Config
+from src.utils.pyinstaller_utils import ensure_vault_exists, is_pyinstaller
 
 def check_dependencies():
     """Verifica que todas las dependencias esten instaladas"""
@@ -50,6 +51,11 @@ def main():
     
     # Cargar configuracion
     config = Config()
+    
+    # Asegurar que el vault exista cuando se ejecuta desde PyInstaller
+    if is_pyinstaller():
+        print("DEBUG: Ejecutando desde PyInstaller, verificando vault...")
+        ensure_vault_exists(config)
     
     # Crear ventana principal con tema oscuro
     root = ttk.Window(

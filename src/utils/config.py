@@ -90,13 +90,19 @@ class Config:
     
     def get_vault_path(self):
         """Obtiene la ruta del almacen de contrasenas"""
+        import sys
         vault_path = self.get("vault_path")
         
         # Si es una ruta relativa, hacerla relativa al directorio raíz
         if not os.path.isabs(vault_path):
-            vault_path = os.path.join(
-                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                vault_path
-            )
+            # Detectar si estamos en un entorno PyInstaller
+            if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+                # Estamos en un ejecutable PyInstaller
+                base_path = os.path.dirname(sys.executable)
+            else:
+                # Estamos en un entorno de desarrollo normal
+                base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            
+            vault_path = os.path.join(base_path, vault_path)
         
         return vault_path

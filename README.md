@@ -21,7 +21,7 @@ A robust desktop password management system with AES-256 encryption and secure l
 ## Screenshots
 
 <div align="center">
-  <img src="https://github.com/yourusername/secure-password-manager/raw/main/docs/images/login_screen.png" alt="Login Screen" width="400">
+  <img src="https://github.com/foxxfiles/pasmasmand/blob/main/images/passman3.png" alt="Login Screen" width="400">
   <img src="https://github.com/foxxfiles/pasmasmand/blob/main/images/passman2.png" alt="Password Generator" width="400">
   <img src="https://github.com/foxxfiles/pasmasmand/blob/main/images/passman1.png" alt="QR Code Export" width="400">
 </div>

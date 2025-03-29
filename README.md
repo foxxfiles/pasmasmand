@@ -99,24 +99,48 @@ This dual-layer approach ensures that even if one key is compromised, your passw
 ### Project Structure
 
 ```
-secure-password-manager/
-├── main.py                  # Application entry point
-├── requirements.txt         # Dependencies
-├── src/
-│   ├── core/
-│   │   ├── auth_manager.py    # Authentication and key management
-│   │   ├── password_manager.py # Password operations
-│   │   └── encryption.py      # Encryption engine
-│   ├── storage/
-│   │   ├── vault.py           # Encrypted storage management
-│   │   └── config.py          # Application configuration
-│   └── ui/
-│       ├── login_window.py    # Login interface
-│       ├── main_window.py     # Main application interface
-│       ├── password_entry_dialog.py  # Password edit dialog
-│       └── password_generator_dialog.py  # Password generator
-└── docs/
-    └── images/               # Documentation images
+# Estructura del Proyecto PasMan (Gestor de Contraseñas Seguras)
+
+pasman/
+├── .gitignore
+├── README.md
+├── empty_vault
+├── main.py                # Punto de entrada principal de la aplicación
+├── main.spec              # Archivo de especificación para PyInstaller
+├── requirements.txt       # Dependencias del proyecto
+├── estructura_proyecto.txt  # Este archivo
+│
+│
+├── src/                   # Código fuente principal
+│   ├── __init__.py
+│   │
+│   ├── core/              # Funcionalidad principal
+│   │   ├── __init__.py
+│   │   ├── auth_manager.py         # Gestión de autenticación
+│   │   ├── password_generator.py   # Generador de contraseñas
+│   │   └── password_manager.py     # Gestor de contraseñas
+│   │
+│   ├── crypto/            # Módulos de criptografía
+│   │   ├── __init__.py
+│   │   └── encryption.py            # Implementación de cifrado AES256
+│   │
+│   ├── storage/           # Almacenamiento de datos
+│   │   ├── __init__.py
+│   │   └── vault.py                 # Gestión del almacén de contraseñas
+│   │
+│   ├── ui/                # Interfaz de usuario
+│   │   ├── __init__.py
+│   │   ├── login_window.py          # Ventana de inicio de sesión
+│   │   ├── main_window.py           # Ventana principal
+│   │   ├── password_entry_dialog.py # Diálogo para entrada de contraseñas
+│   │   └── password_generator_dialog.py # Diálogo del generador de contraseñas
+│   │
+│   └── utils/             # Utilidades
+│       ├── __init__.py
+│       ├── config.py                # Gestión de configuración
+│       └── pyinstaller_utils.py     # Utilidades para PyInstaller
+│
+└── tests/                 # Pruebas unitarias y de integración
 ```
 
 ## Contributing

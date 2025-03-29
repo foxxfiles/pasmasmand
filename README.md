@@ -2,7 +2,6 @@
 
 A robust desktop password management system with AES-256 encryption and secure local storage.
 
-![Password Manager](https://github.com/yourusername/secure-password-manager/raw/main/docs/images/main_screen.png)
 
 ## Features
 
